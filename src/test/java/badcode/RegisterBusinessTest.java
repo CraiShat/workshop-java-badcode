@@ -25,59 +25,6 @@ class RegisterBusinessTest {
         assertEquals(1000, speakerId);
     }
 
-    @Test
-    @DisplayName("สามารถบันทึกข้อมูล EXP3")
-    public void caseEXP3() {
-        RegisterBusiness registerBusiness = new RegisterBusiness();
-        Speaker speaker = new Speaker();
-        speaker.setFirstName("firstName");
-        speaker.setLastName("lastName");
-        speaker.setEmail("email@gmail.com");
-        speaker.setExp(3);
-        int speakerId = registerBusiness.register(new SpeakerRepository() {
-            @Override
-            public Integer saveSpeaker(Speaker speaker) {
-                return 1000;
-            }
-        }, speaker);
-        assertEquals(1000, speakerId);
-    }
-
-    @Test
-    @DisplayName("สามารถบันทึกข้อมูล EXP5")
-    public void caseEXP5() {
-        RegisterBusiness registerBusiness = new RegisterBusiness();
-        Speaker speaker = new Speaker();
-        speaker.setFirstName("firstName");
-        speaker.setLastName("lastName");
-        speaker.setEmail("email@gmail.com");
-        speaker.setExp(5);
-        int speakerId = registerBusiness.register(new SpeakerRepository() {
-            @Override
-            public Integer saveSpeaker(Speaker speaker) {
-                return 1000;
-            }
-        }, speaker);
-        assertEquals(1000, speakerId);
-    }
-
-    @Test
-    @DisplayName("สามารถบันทึกข้อมูล EXP9")
-    public void caseEXP9() {
-        RegisterBusiness registerBusiness = new RegisterBusiness();
-        Speaker speaker = new Speaker();
-        speaker.setFirstName("firstName");
-        speaker.setLastName("lastName");
-        speaker.setEmail("email@gmail.com");
-        speaker.setExp(9);
-        int speakerId = registerBusiness.register(new SpeakerRepository() {
-            @Override
-            public Integer saveSpeaker(Speaker speaker) {
-                return 1000;
-            }
-        }, speaker);
-        assertEquals(1000, speakerId);
-    }
     // test to fail
     @Test
     @DisplayName("ไม่กำหนดชื่อ จะเกิด exception First name is required.")
