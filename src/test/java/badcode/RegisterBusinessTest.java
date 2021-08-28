@@ -25,7 +25,59 @@ class RegisterBusinessTest {
         assertEquals(1000, speakerId);
     }
 
+    @Test
+    @DisplayName("สามารถบันทึกข้อมูล EXP3")
+    public void caseEXP3() {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("firstName");
+        speaker.setLastName("lastName");
+        speaker.setEmail("email@gmail.com");
+        speaker.setExp(3);
+        int speakerId = registerBusiness.register(new SpeakerRepository() {
+            @Override
+            public Integer saveSpeaker(Speaker speaker) {
+                return 1000;
+            }
+        }, speaker);
+        assertEquals(1000, speakerId);
+    }
 
+    @Test
+    @DisplayName("สามารถบันทึกข้อมูล EXP5")
+    public void caseEXP5() {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("firstName");
+        speaker.setLastName("lastName");
+        speaker.setEmail("email@gmail.com");
+        speaker.setExp(5);
+        int speakerId = registerBusiness.register(new SpeakerRepository() {
+            @Override
+            public Integer saveSpeaker(Speaker speaker) {
+                return 1000;
+            }
+        }, speaker);
+        assertEquals(1000, speakerId);
+    }
+
+    @Test
+    @DisplayName("สามารถบันทึกข้อมูล EXP9")
+    public void caseEXP9() {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("firstName");
+        speaker.setLastName("lastName");
+        speaker.setEmail("email@gmail.com");
+        speaker.setExp(9);
+        int speakerId = registerBusiness.register(new SpeakerRepository() {
+            @Override
+            public Integer saveSpeaker(Speaker speaker) {
+                return 1000;
+            }
+        }, speaker);
+        assertEquals(1000, speakerId);
+    }
     // test to fail
     @Test
     @DisplayName("ไม่กำหนดชื่อ จะเกิด exception First name is required.")
@@ -33,6 +85,22 @@ class RegisterBusinessTest {
         RegisterBusiness registerBusiness = new RegisterBusiness();
         try {
             registerBusiness.register(null,new Speaker());
+            fail();
+        } catch (ArgumentNullException e) {
+            if (!e.getMessage().equals("First name is required.")) {
+                fail();
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("ชื่อว่าง จะเกิด exception First name is required.")
+    public void caseExceptionFirstNameEmpty() {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("");
+        try {
+            registerBusiness.register(null,speaker);
             fail();
         } catch (ArgumentNullException e) {
             if (!e.getMessage().equals("First name is required.")) {
@@ -58,12 +126,47 @@ class RegisterBusinessTest {
     }
 
     @Test
+    @DisplayName("สกุลว่าง จะเกิด exception Last name is required.")
+    public void caseExceptionLastNameEmpty() {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("firstName");
+        speaker.setLastName("");
+        try {
+            registerBusiness.register(null,speaker);
+            fail();
+        } catch (ArgumentNullException e) {
+            if (!e.getMessage().equals("Last name is required.")) {
+                fail();
+            }
+        }
+    }
+
+    @Test
     @DisplayName("ไม่กำหนด Email จะเกิด exception Email is required.")
     public void caseExceptionEmail() {
         RegisterBusiness registerBusiness = new RegisterBusiness();
         Speaker speaker = new Speaker();
         speaker.setFirstName("firstName");
         speaker.setLastName("lastName");
+        try {
+            registerBusiness.register(null,speaker);
+            fail();
+        } catch (ArgumentNullException e) {
+            if (!e.getMessage().equals("Email is required.")) {
+                fail();
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("Email ว่าง จะเกิด exception Email is required.")
+    public void caseExceptionEmailEmpty() {
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("firstName");
+        speaker.setLastName("lastName");
+        speaker.setEmail("");
         try {
             registerBusiness.register(null,speaker);
             fail();
